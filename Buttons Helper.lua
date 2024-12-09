@@ -1,8 +1,8 @@
-script_name("Buttons Helper")
+script_name("BUTTONS Helper")
 script_author("Lion")
 script_version("1.0")
 local VersionV = '1.0'
------------------ [ГЃГЁГЎГ«ГЁГ®ГІГҐГЄГЁ] ---------------------------
+----------------- [Библиотеки] ---------------------------
 local sampev = require("samp.events")
 local imgui = require 'mimgui'
 local encoding = require 'encoding'
@@ -88,32 +88,32 @@ function downloadFile(url, path)
   end
   
 function check_update()
-    msg("ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г Г«ГЁГ·ГЁГї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГ©...")
+    msg("Проверка наличия обновлений...")
     local currentVersionFile = io.open(lmPath, "r")
     local currentVersion = currentVersionFile:read("*a")
     currentVersionFile:close()
     local response = http.request(lmUrl)
     if response and response ~= currentVersion then
-        msg("Г“ ГўГ Г± Г­ГҐ Г ГЄГІГіГ Г«ГјГ­Г Гї ГўГҐГ°Г±ГЁГї! Г„Г«Гї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї ГЇГҐГ°ГҐГ©Г¤ГЁГІГҐ ГўГ® ГўГЄГ«Г Г¤ГЄГі: Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї")
+        msg("У вас не актуальная версия! Для обновления перейдите во вкладку: Информация")
     else
-        msg("Г“ ГўГ Г± Г ГЄГІГіГ Г«ГјГ­Г Гї ГўГҐГ°Г±ГЁГї Г±ГЄГ°ГЁГЇГІГ .")
+        msg("У вас актуальная версия скрипта.")
     end
 end
 local function updateScript(scriptUrl, scriptPath)
-    msg("ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г Г«ГЁГ·ГЁГї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГ©...")
+    msg("Проверка наличия обновлений...")
     local response = http.request(scriptUrl)
     if response and response ~= currentVersion then
-        msg("Г„Г®Г±ГІГіГЇГ­Г  Г­Г®ГўГ Гї ГўГҐГ°Г±ГЁГї Г±ГЄГ°ГЁГЇГІГ ! ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ...")
+        msg("Доступна новая версия скрипта! Обновление...")
         
         local success = downloadFile(scriptUrl, scriptPath)
         if success then
-            msg("Г‘ГЄГ°ГЁГЇГІ ГіГ±ГЇГҐГёГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­.")
+            msg("Скрипт успешно обновлен.")
             thisScript():reload()
         else
-            msg("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГЎГ­Г®ГўГЁГІГј Г±ГЄГ°ГЁГЇГІ.")
+            msg("Не удалось обновить скрипт.")
         end
     else
-        msg("Г‘ГЄГ°ГЁГЇГІ ГіГ¦ГҐ ГїГўГ«ГїГҐГІГ±Гї ГЇГ®Г±Г«ГҐГ¤Г­ГҐГ© ГўГҐГ°Г±ГЁГҐГ©.")
+        msg("Скрипт уже является последней версией.")
     end
 end
 
@@ -192,49 +192,49 @@ imgui.OnFrame(function() return WinState2[0] end, function(player)
     imgui.Begin('##2Window', WinState2, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.AlwaysAutoResize) 
     
         if ini.knopa.pochinka then
-            if imgui.Button(fa.CAR_WRENCH .. u8' ГЏГ®Г·ГЁГ­ГЁГІГј') then 
+            if imgui.Button(fa.CAR_WRENCH .. u8' Починить') then 
                 sampSendChat('/repcar')
             end
         end
         
         if ini.knopa.fillcar then
-            if imgui.Button(fa.GAS_PUMP .. u8' Г‡Г ГЇГ°Г ГўГЁГІГј') then 
+            if imgui.Button(fa.GAS_PUMP .. u8' Заправить') then 
                 sampSendChat('/fillcar')
             end
         end
 
         if ini.knopa.key then
-            if imgui.Button(fa.KEY .. u8' ГЉГ«ГѕГ·ГЁ') then 
+            if imgui.Button(fa.KEY .. u8' Ключи') then 
                 sampSendChat('/key')
             end
         end
        
         if ini.knopa.dveri then
-            if imgui.Button(fa.DOOR_OPEN .. u8' Г„ГўГҐГ°ГЁ') then 
+            if imgui.Button(fa.DOOR_OPEN .. u8' Двери') then 
                 sampSendChat('/lock')
             end
         end
          
          if ini.knopa.rejim then
-            if imgui.Button(fa.GAMEPAD .. u8' ГђГҐГ¦ГЁГ¬') then 
+            if imgui.Button(fa.GAMEPAD .. u8' Режим') then 
                 sampSendChat('/style')
             end
         end
         
          if ini.knopa.domk then
-            if imgui.Button(fa.BLINDS_RAISED .. u8' Г„Г®Г¬ГЄГ°Г ГІ') then 
+            if imgui.Button(fa.BLINDS_RAISED .. u8' Домкрат') then 
                 sampSendChat('/domkrat')
             end
         end
         
         if ini.knopa.lek then
-            if imgui.Button(fa.PILLS .. u8' ГЂГЇГІГҐГ·ГЄГ ') then 
+            if imgui.Button(fa.PILLS .. u8' Аптечка') then 
                 sampSendChat('/usemed')
             end
         end
         
         if ini.knopa.arm then
-            if imgui.Button(fa.SHIELD .. u8' ГЃГ°Г®Г­ГЁГЄ') then 
+            if imgui.Button(fa.SHIELD .. u8' Броник') then 
                 sampSendChat('/armour')
             end
         end
@@ -271,10 +271,10 @@ if not isSampfuncsLoaded() or not isSampLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 	while not sampIsLocalPlayerSpawned() do wait(0) end
 lua_thread.create(counter)
-msg("Г‡Г ГЈГ°ГіГ§ГЄГ  ГµГҐГ«ГЇГҐГ°Г  ГЇГ°Г®ГёГ«Г  ГіГ±ГЇГҐГёГ­Г®!")
-show_arz_notify('info', 'Buttons', "Г‡Г ГЈГ°ГіГ§ГЄГ  ГµГҐГ«ГЇГҐГ°Г  ГЇГ°Г®ГёГ«Г  ГіГ±ГЇГҐГёГ­Г®! ГЂГЄГІГЁГўГ Г¶ГЁГї: /but", 3000)
-print(' Г‡Г ГЈГ°ГіГ§ГЄГ  ГµГҐГ«ГЇГҐГ°Г  ГЇГ°Г®ГёГ«Г  ГіГ±ГЇГҐГёГ­Г®!')
-msg("Г—ГІГ®ГЎ Г®ГІГЄГ°Г»ГІГј Г¬ГҐГ­Гѕ ГµГҐГ«ГЇГҐГ°Г  ГўГўГҐГ¤ГЁГІГҐ ГЄГ®Г¬Г Г­Г¤Гі {009EFF}/but")
+msg("Загрузка хелпера прошла успешно!")
+show_arz_notify('info', 'Buttons', "Загрузка хелпера прошла успешно! Активация: /but", 3000)
+print(' Загрузка хелпера прошла успешно!')
+msg("Чтоб открыть меню хелпера введите команду {009EFF}/but")
 check_update()
 sampRegisterChatCommand('but', function() ButtonsM[0] = not ButtonsM[0] end)
 end
@@ -284,47 +284,47 @@ imgui.OnFrame(function() return ButtonsM[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.Begin(fa.STOP .. ' Buttons Helper', ButtonsM, imgui.WindowFlags.NoCollapse)
     if imgui.BeginTabBar('Tabs') then	           										  
-        if imgui.BeginTabItem(fa.GEAR .. u8' ГЌГ Г±ГІГ°Г®Г©ГЄГЁ ГЄГ­Г®ГЇГ®ГЄ') then
+        if imgui.BeginTabItem(fa.GEAR .. u8' Настройки кнопок') then
             
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГ®ГЄ',infobarik2) then
+                if imgui.Checkbox(u8'Отображение кнопок',infobarik2) then
                     WinState2[0]= not WinState2[0]              
                 end     
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ ГЏГ®Г·ГЁГ­ГЄГ  ] ',pochinka) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Починка ] ',pochinka) then
                     ini.knopa.pochinka = pochinka[0]
                     cfg_save() 
                 end 
                 
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ Г‡Г ГЇГ°Г ГўГЄГ  ] ',fillcar) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Заправка ] ',fillcar) then
                     ini.knopa.fillcar = fillcar[0]
                     cfg_save() 
                 end 
                 
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ ГЉГ«ГѕГ·ГЁ ] ',key) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Ключи ] ',key) then
                     ini.knopa.key = key[0]
                     cfg_save() 
                end
                     
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ Г„ГўГҐГ°ГЁ ] ',dveri) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Двери ] ',dveri) then
                     ini.knopa.dveri = dveri[0]
                     cfg_save()
                end
                
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ ГђГҐГ¦ГЁГ¬ ] ',rejim) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Режим ] ',rejim) then
                     ini.knopa.rejim = rejim[0]
                     cfg_save() 
                 end
                 
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ Г„Г®Г¬ГЄГ°Г ГІ ] ',domk) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Домкрат ] ',domk) then
                     ini.knopa.domk = domk[0]
                     cfg_save() 
                 end
                 
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ ГЂГЇГІГҐГ·ГЄГ  ] ',lek) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Аптечка ] ',lek) then
                     ini.knopa.lek = lek[0]
                     cfg_save() 
                 end
                 
-                if imgui.Checkbox(u8'ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ [ ГЃГ°Г®Г­ГЁГЄ ] ',arm) then
+                if imgui.Checkbox(u8'Отображение кнопки [ Броник ] ',arm) then
                     ini.knopa.arm = arm[0]
                     cfg_save() 
                 end
@@ -333,26 +333,26 @@ imgui.OnFrame(function() return ButtonsM[0] end, function(player)
         imgui.EndTabItem()
     end 
     
-    if imgui.BeginTabItem(fa.INFO .. u8' Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї') then
+    if imgui.BeginTabItem(fa.INFO .. u8' Информация') then
     
-    imgui.Text(fa.CIRCLE_USER..u8" ГђГҐГ¤Г ГЄГІГ®Г° Г¤Г Г­Г­Г®ГЈГ® ГµГҐГ«ГЇГҐГ°Г : Lion")
+    imgui.Text(fa.CIRCLE_USER..u8" Редактор данного хелпера: Lion")
 				imgui.Separator()
-				imgui.Text(fa.CIRCLE_INFO..u8' Г“Г±ГІГ Г­Г®ГўГ«ГҐГ­Г­Г Гї ГўГҐГ°Г±ГЁГї ГµГҐГ«ГЇГҐГ°Г  ' .. VersionV)
+				imgui.Text(fa.CIRCLE_INFO..u8' Установленная версия хелпера ' .. VersionV)
 				imgui.SameLine()
-				if imgui.Button(u8' ГЋГЎГ­Г®ГўГЁГІГј') then
+				if imgui.Button(u8' Обновить') then
     updateScript(lmUrl, lmPath)
 end
 				
 				imgui.Separator()
-				imgui.Text(fa.HEADSET..u8" ГЉГ Г­Г Г« Г°ГҐГ¤Г ГЄГІГ®Г°Г  ГµГҐГ«ГЇГҐГ°Г :")
+				imgui.Text(fa.HEADSET..u8" Канал редактора хелпера:")
 				imgui.SameLine()
 				if imgui.SmallButton('Telegram') then
 					openLink('https://t.me/luamastery')
 				end
 				imgui.Separator()
-				imgui.Text(fa.GLOBE..u8" ГЋГ±Г­Г®ГўГ  ГµГҐГ«ГЇГҐГ°Г  Г­Г  BlastHack:")
+				imgui.Text(fa.GLOBE..u8" Основа хелпера на BlastHack:")
 				imgui.SameLine()
-				if imgui.SmallButton(u8'ГЏГҐГ°ГҐГ©ГІГЁ') then
+				if imgui.SmallButton(u8'Перейти') then
 					openLink('https://www.blast.hk/threads/217684/')							
 end
  					imgui.Separator()
@@ -364,18 +364,18 @@ end
           apply_n_t()
             end
             imgui.SameLine()
-            imgui.Text(fa.NOTE_STICKY..u8' Г–ГўГҐГІ MoonMonet') 
+            imgui.Text(fa.NOTE_STICKY..u8' Цвет MoonMonet') 
             
             imgui.Separator()
             imgui.Separator()
-	imgui.CenterText(fa.CODE .. u8' ГЉГ®Г¬Г Г­Г¤Г»')
-	imgui.Text(fa.CALCULATOR .. u8' /calc - ГЉГ Г«ГјГЄГіГ«ГїГІГ®Г°')
+	imgui.CenterText(fa.CODE .. u8' Команды')
+	imgui.Text(fa.CALCULATOR .. u8' /calc - Калькулятор')
                 
 						imgui.Separator()  
 				      imgui.Separator()
-	if imgui.Button(fa.ROTATE .. u8" ГЏГҐГ°ГҐГ§Г ГЈГ°ГіГ§ГЁГІГј") then script_reload() end
+	if imgui.Button(fa.ROTATE .. u8" Перезагрузить") then script_reload() end
 	imgui.SameLine()
-	if imgui.Button(fa.XMARK .. u8" Г‚Г»ГЈГ°ГіГ§ГЁГІГј") then script_unload() end
+	if imgui.Button(fa.XMARK .. u8" Выгрузить") then script_unload() end
             		
 					        
         imgui.EndTabItem()
@@ -417,19 +417,19 @@ function resetCounter()
 end
 
 sampRegisterChatCommand('calc', function(arg) 
-        if #arg == 0 or not arg:find('%d+') then return sampAddChatMessage('[ГЉГ Г«ГјГЄГіГ«ГїГІГ®Г°]: {DE9F00}ГЋГёГЁГЎГЄГ , ГўГўГҐГ¤ГЁГІГҐ /calc [ГЇГ°ГЁГ¬ГҐГ°]', 0x08A351) end
+        if #arg == 0 or not arg:find('%d+') then return sampAddChatMessage('[Калькулятор]: {DE9F00}Ошибка, введите /calc [пример]', 0x08A351) end
         sampAddChatMessage('[Buttons Helper]: {009EFF}'..arg..' = '..assert(load("return " .. arg))(), 0x08A351)
     end)
 
 function get_clock(time)
     local timezone_offset = 86400 - os.date('%H', 0) * 3600
     if tonumber(time) >= 86400 then onDay = true else onDay = false end
-    return os.date((onDay and math.floor(time / 86400)..'Г¤ ' or '')..'%H:%M:%S', time + timezone_offset)
+    return os.date((onDay and math.floor(time / 86400)..'д ' or '')..'%H:%M:%S', time + timezone_offset)
 end
 
 function script_reload()
 lua_thread.create(function()
-show_arz_notify('info', 'Buttons Helper', "ГЏГҐГ°ГҐГ§Г ГЈГ°ГіГ§ГЄГ ....!", 500)
+show_arz_notify('info', 'Buttons Helper', "Перезагрузка....!", 500)
 wait(0)
 thisScript():reload()
 end)
@@ -437,7 +437,7 @@ end
 
 function script_unload()
 lua_thread.create(function()
-show_arz_notify('info', 'Buttons Helper', "Г‚Г»ГЄГ«ГѕГ·ГҐГ­ГЁГҐ....!", 500)
+show_arz_notify('info', 'Buttons Helper', "Выключение....!", 500)
 wait(0)
 thisScript():unload()
 end)
