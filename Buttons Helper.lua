@@ -192,7 +192,7 @@ imgui.OnFrame(function() return WinState2[0] end, function(player)
     imgui.Begin('##2Window', WinState2, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.AlwaysAutoResize) 
     
         if ini.knopa.pochinka then
-            if imgui.Button(fa.CAR_WRENCH .. u8' Починть') then 
+            if imgui.Button(fa.CAR_WRENCH .. u8' Починить') then 
                 sampSendChat('/repcar')
             end
         end
@@ -216,14 +216,8 @@ imgui.OnFrame(function() return WinState2[0] end, function(player)
         end
          
          if ini.knopa.rejim then
-            if imgui.Button(u8' Режим') then 
+            if imgui.Button(fa.GAMEPAD .. u8' Режим') then 
                 sampSendChat('/style')
-            end
-        end
-        
-        if ini.knopa.rejim then
-            if imgui.Button(u8' Аптечка') then 
-                sampSendChat('/usemed')
             end
         end
         
@@ -234,13 +228,13 @@ imgui.OnFrame(function() return WinState2[0] end, function(player)
         end
         
         if ini.knopa.lek then
-            if imgui.Button(u8' Аптечка') then 
+            if imgui.Button(fa.PILLS .. u8' Аптечка') then 
                 sampSendChat('/usemed')
             end
         end
         
         if ini.knopa.arm then
-            if imgui.Button(u8' Броник') then 
+            if imgui.Button(fa.SHIELD .. u8' Броник') then 
                 sampSendChat('/armour')
             end
         end
@@ -374,14 +368,14 @@ end
             
             imgui.Separator()
             imgui.Separator()
-	imgui.CenterText(u8' Команды')
+	imgui.CenterText(fa.CODE .. u8' Команды')
 	imgui.Text(fa.CALCULATOR .. u8' /calc - Калькулятор')
                 
 						imgui.Separator()  
 				      imgui.Separator()
-	if imgui.Button(u8" Перезагрузить") then script_reload() end
+	if imgui.Button(fa.ROTATE .. u8" Перезагрузить") then script_reload() end
 	imgui.SameLine()
-	if imgui.Button(u8" Выгрузить") then script_unload() end
+	if imgui.Button(fa.XMARK .. u8" Выгрузить") then script_unload() end
             		
 					        
         imgui.EndTabItem()
